@@ -1,40 +1,36 @@
 {
-  "name": "Age Page",
+  "name": "agePage",
   "version": "0.1",
   "manifest_version": 2,
-  "description": "Graphically displays the age of the page",
-  "homepage_url": "http://",
+  "description": "Visualizes Page Age",
+  "author": "Chris Rudmin",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": false
-  },
   "permissions": [
-    "http://google.com/*"
+    "http://www.google.com/*",
+    "https://www.google.com/*"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "css": [
-        "src/inject/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js"
-      ]
-    }
-  ]
+  "content_scripts": [{
+    "matches": [ "http://*/*" ],
+    "js": [ "src/agePage.js" ],
+    "css": [ "src/agePage.css" ]
+  }],
+  "web_accessible_resources": [
+      "images/yellow.png",
+      "images/web-left-1.png",
+      "images/web-left-2.png",
+      "images/web-left-3.png",
+      "images/web-left-4.png",
+      "images/web-left-5.png",
+      "images/web-left-6.png",
+      "images/web-right-1.png",
+      "images/web-right-2.png",
+      "images/web-right-3.png",
+      "images/web-right-4.png",
+      "images/web-right-5.png",
+      "images/web-right-6.png"
+    ]
 }
