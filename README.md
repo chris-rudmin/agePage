@@ -10,23 +10,30 @@ One web will be added for every 6 months up to 4 years
 How does it work?
 -------------------------
 
-We query google and scrape the reported page age from them. If this fails, we resort to the age reported by the server.
+We query google and scrape the reported page age. If this fails, we resort to the age reported by the server.
+In reality the age reported from the server is rarely accurate and google has a better estimate of page age.
+More robust solution might be to find other internet services.
 
-Note: We should really be using Google Custom Search API https://developers.google.com/custom-search/ but it costs money.
+Note: This method will likely fail if google adjusts is request responses. We should really be using Google Custom Search API https://developers.google.com/custom-search/ but it costs money.
 
 Contributers
 -------------------------------
 
-Concept by John F. Walsh
-Code by Chris Rudmin
+Concept: John F. Walsh
+Code: Chris Rudmin
+
+Included Libraries
+-------------------------------
+
+jQuery 2.0.3: jquery.com
 
 Known Issues
 -------------------------------
 
 Scraping the dates from google only work if results are in English
-Age of https pages cannot be accurately determined
+
 
 Compiling
 ------------------------
 
-TBD:
+In the Chrome Extensions window, Enable Developer Mode by clicking in the top right. Then click Load Unpacked Extension and select this folder. You can also compile the extension from here. 

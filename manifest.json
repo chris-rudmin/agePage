@@ -10,27 +10,27 @@
     "128": "icons/icon128.png"
   },
   "permissions": [
-    "http://www.google.com/*",
     "https://www.google.com/*"
   ],
   "content_scripts": [{
-    "matches": [ "http://*/*" ],
-    "js": [ "src/agePage.js" ],
+    "matches": [ "http://*/*", "https://*/*" ],
+    "js": [ "src/jquery-2.0.3.min.js", "src/agePage.js" ],
     "css": [ "src/agePage.css" ]
   }],
+  "content_security_policy": "script-src 'self' https://www.google.com; object-src 'self' https://www.google.com",
   "web_accessible_resources": [
-      "images/yellow.png",
-      "images/web-left-1.png",
-      "images/web-left-2.png",
-      "images/web-left-3.png",
-      "images/web-left-4.png",
-      "images/web-left-5.png",
-      "images/web-left-6.png",
-      "images/web-right-1.png",
-      "images/web-right-2.png",
-      "images/web-right-3.png",
-      "images/web-right-4.png",
-      "images/web-right-5.png",
-      "images/web-right-6.png"
-    ]
+    "images/yellow.png",
+    "images/web-left-1.png",
+    "images/web-left-2.png",
+    "images/web-left-3.png",
+    "images/web-left-4.png",
+    "images/web-left-5.png",
+    "images/web-left-6.png",
+    "images/web-right-1.png",
+    "images/web-right-2.png",
+    "images/web-right-3.png",
+    "images/web-right-4.png",
+    "images/web-right-5.png",
+    "images/web-right-6.png"
+  ]
 }
