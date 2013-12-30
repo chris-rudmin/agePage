@@ -20,6 +20,12 @@ Contributers
 Concept by John F. Walsh
 Code by Chris Rudmin
 
+Known Issues
+-------------------------------
+
+Scraping the dates from google only work if results are in English
+Age of https pages cannot be accurately determined
+
 Compiling
 ------------------------
 
