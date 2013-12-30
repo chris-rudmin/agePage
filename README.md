@@ -12,7 +12,7 @@ How does it work?
 
 We query google and scrape the reported page age from them. If this fails, we resort to the age reported by the server.
 
-Note: We should really be using Google Custom Search Api https://developers.google.com/custom-search/ but it costs money.
+Note: We should really be using Google Custom Search API https://developers.google.com/custom-search/ but it costs money.
 
 Contributers
 -------------------------------
