@@ -2,7 +2,7 @@
   "name": "agePage",
   "version": "0.1",
   "manifest_version": 2,
-  "description": "Visualizes Page Age",
+  "description": "An extension which adds visual cues to inform the user how old the page is.",
   "author": "Chris Rudmin",
   "icons": {
     "16": "icons/icon16.png",
@@ -17,20 +17,5 @@
     "js": [ "src/jquery-2.0.3.min.js", "src/agePage.js" ],
     "css": [ "src/agePage.css" ]
   }],
-  "content_security_policy": "script-src 'self' https://www.google.com; object-src 'self' https://www.google.com",
-  "web_accessible_resources": [
-    "images/yellow.jpg",
-    "images/web-left-1.png",
-    "images/web-left-2.png",
-    "images/web-left-3.png",
-    "images/web-left-4.png",
-    "images/web-left-5.png",
-    "images/web-left-6.png",
-    "images/web-right-1.png",
-    "images/web-right-2.png",
-    "images/web-right-3.png",
-    "images/web-right-4.png",
-    "images/web-right-5.png",
-    "images/web-right-6.png"
-  ]
+  "web_accessible_resources": [ "images/yellow.jpg" ]
 }
