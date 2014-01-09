@@ -1,7 +1,7 @@
 var agePage = function(){
 
 	// Constants
-	var minAgeForTextInDays = 0,
+	var minAgeForTextInDays = 180,
 		fadeInDuration = 1000,
 		textClass = "agePageText";
 
