@@ -2,6 +2,7 @@ agePage
 ================================
 
 This is a proof of concept Google Chrome Extension which informs the user how old the page is they are looking at.
+
 Page age will appear in the bottom right after page is 180 days old
 
 How does it work?
@@ -17,6 +18,7 @@ Contributers
 -------------------------------
 
 Concept: John F. Walsh
+
 Code: Chris Rudmin
 
 Included Libraries
