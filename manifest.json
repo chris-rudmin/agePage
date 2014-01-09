@@ -1,8 +1,8 @@
 {
   "name": "agePage",
-  "version": "0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
-  "description": "An extension which adds visual cues to inform the user how old the page is.",
+  "description": "An extension which informs the user how old the page is.",
   "author": "Chris Rudmin",
   "icons": {
     "16": "icons/icon16.png",
