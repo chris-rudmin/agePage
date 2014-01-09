@@ -27,7 +27,6 @@ var agePage = function(){
 	// Pages that are always up to date will not show in our results
 	var googleRequestSuccess = function( data ) {
 
-		// find the result which has our URL or title
 		var pageUpdatedDate,
 			urlToSearch = document.URL.replace("http://", ""),
 			titleToSearch = document.title,
@@ -39,12 +38,13 @@ var agePage = function(){
 				resultUrl = $this.find("cite").text().replace("...", ""),
 				resultTitle = $this.find("h3 a").text().replace("...", "");
 
+			// Only use google date if url or title match
 			if ( urlToSearch.indexOf( resultUrl ) != -1 || titleToSearch.indexOf( resultTitle ) != -1 ) {
 				
-				// Create a date if date is present
+				// Create a date if present
 				pageUpdatedDate = new Date( $this.find("span.f").text().split(" - ")[0] );
 
-				// Might be with additional data
+				// Might be in different format
 				if ( isNaN( pageUpdatedDate.getTime() ) ) {
 					pageUpdatedDate = new Date( $this.find("div.f.slp").text().split(" - ")[0] );
 				}
