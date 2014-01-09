@@ -11,7 +11,7 @@ var agePage = function(){
 		if (ageInDays > minAgeForTextInDays) {
 			$("<div/>")
 				.addClass( textClass )
-				.text("Published: "+pageUpdatedDate.toDateString() )
+				.text( pageUpdatedDate.toDateString() )
 				.hide()
 				.appendTo("body")
 				.fadeIn( fadeInDuration );
