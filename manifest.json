@@ -16,6 +16,5 @@
     "matches": [ "http://*/*", "https://*/*" ],
     "js": [ "src/jquery-2.0.3.min.js", "src/agePage.js" ],
     "css": [ "src/agePage.css" ]
-  }],
-  "web_accessible_resources": [ "images/yellow.jpg" ]
+  }]
 }

@@ -1,67 +1,63 @@
 var agePage = function(){
 
 	// Constants
-	var maxYellowOpacity = 0.35,
-		minAgeForYellowingInDays = 90,
-		minAgeForText = 365,
-		fadeInDuration = 4000,
-		easingAlgorithm = "swing",
-		imageYellowClass = "agePageYellow",
-		textClass = "agePageText",
-		imageYellowUrl = chrome.extension.getURL("images/yellow.jpg");
-
+	var minAgeForTextInDays = 0,
+		fadeInDuration = 1000,
+		textClass = "agePageText";
 
 	var drawUiWithAge = function( pageUpdatedDate ) {
 		var ageInDays = (new Date().getTime() - pageUpdatedDate.getTime()) / 86400000;
-		console.log("This page is "+ageInDays+" days old");
 
-		// Draw yellow aging
-		if (ageInDays > minAgeForYellowingInDays) {
-
-			var yellowOpacity = maxYellowOpacity;
-			if ( ageInDays < minAgeForText) {
-				yellowOpacity = yellowOpacity * ((ageInDays - minAgeForYellowingInDays) / (minAgeForText - minAgeForYellowingInDays));
-			}
-
+		if (ageInDays > minAgeForTextInDays) {
 			$("<div/>")
-				.addClass( imageYellowClass )
-				.css({
-					"background-image": "url("+imageYellowUrl+")",
-					"height": $(document).height()
-				})
+				.addClass( textClass )
+				.text("Published: "+pageUpdatedDate.toDateString() )
+				.hide()
 				.appendTo("body")
-				.fadeTo( fadeInDuration, yellowOpacity, easingAlgorithm );
-
-			// add text
-			if ( ageInDays > minAgeForText ) {
-				$("<div/>")
-					.addClass( textClass )
-					.text("This page is "+Math.floor(ageInDays)+" days old")
-					.appendTo("body")
-					.fadeIn( fadeInDuration, easingAlgorithm );
-			}
+				.fadeIn( fadeInDuration );
 		}
 	};
 
     var googleRequestFail = function(){
-    	console.log("Getting last updated date from google failed. Using lastModified date from header.");
+    	console.log("Getting last updated date from google failed. Using lastModified date.");
     	drawUiWithAge( new Date(document.lastModified) );
     };
 	
 	// Get the date of the first result. This might not be accurate.
+	// Pages that are always up to date will not show in our results
 	var googleRequestSuccess = function( data ) {
-		var pageUpdatedDate = new Date( $(data).find("#rso li:first-child span.f").text().replace(" - ", "") );
 
-		if ( isNaN( pageUpdatedDate.getTime() ) ) {
-			googleRequestFail();
+		// find the result which has our URL or title
+		var pageUpdatedDate,
+			urlToSearch = document.URL.replace("http://", ""),
+			titleToSearch = document.title,
+			pageResults = $(data).find("#rso > li");
+
+		pageResults.each( function(){
+			var $this = $(this);
+			if ( urlToSearch.indexOf( $this.find("cite").text().replace("...", "") ) != -1 || titleToSearch.indexOf( $this.find("h3 a").text().replace("...", "") ) != -1 ) {
+				pageUpdatedDate = new Date( $this.find("span.f").text().split(" - ")[0] );
+
+				// Might be with additional data
+				if ( isNaN( pageUpdatedDate.getTime() ) ) {
+					pageUpdatedDate = new Date( $this.find("div.f.slp").text().split(" - ")[0] );
+				}
+				return false;
+			}
+		});
+
+		if ( pageUpdatedDate && !isNaN( pageUpdatedDate.getTime() ) ) {
+			drawUiWithAge( pageUpdatedDate );
 		}
 		else {
-			drawUiWithAge( pageUpdatedDate );
+			googleRequestFail();
 		}
     };
 
 
 	// Search for this URL in google from before 1 day ago
+	// Google also scrapes pages for dates to accurately determine the date, which is why we will not attempt this here as well
+	// Pages updated daily will not show in these results
 	// NOTE! This is totally bad form, and can break if google changes it's request responses !
 	var request = $.ajax({
 		url: "https://www.google.com/search",
