@@ -33,15 +33,22 @@ var agePage = function(){
 			titleToSearch = document.title,
 			pageResults = $(data).find("#rso > li");
 
-		pageResults.each( function(){
-			var $this = $(this);
-			if ( urlToSearch.indexOf( $this.find("cite").text().replace("...", "") ) != -1 || titleToSearch.indexOf( $this.find("h3 a").text().replace("...", "") ) != -1 ) {
+		pageResults.each( function() {
+
+			var $this = $(this),
+				resultUrl = $this.find("cite").text().replace("...", ""),
+				resultTitle = $this.find("h3 a").text().replace("...", "");
+
+			if ( urlToSearch.indexOf( resultUrl ) != -1 || titleToSearch.indexOf( resultTitle ) != -1 ) {
+				
+				// Create a date if date is present
 				pageUpdatedDate = new Date( $this.find("span.f").text().split(" - ")[0] );
 
 				// Might be with additional data
 				if ( isNaN( pageUpdatedDate.getTime() ) ) {
 					pageUpdatedDate = new Date( $this.find("div.f.slp").text().split(" - ")[0] );
 				}
+
 				return false;
 			}
 		});
