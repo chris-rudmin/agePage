@@ -33,7 +33,7 @@ var agePage = function(){
 
 			var $this = $(this),
 				resultUrl = $this.find("cite").text().replace("...", ""),
-				resultTitle = $this.find("h3 a").text().replace("...", "");
+				resultTitle = $this.find("h3 a").text().replace(" ...", "");
 
 			// Only use date if url or title match to reduce false positive
 			if ( urlToSearch.indexOf( resultUrl ) != -1 || titleToSearch.indexOf( resultTitle ) != -1 ) {
