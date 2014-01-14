@@ -1,0 +1,12 @@
+{
+	"published": {
+		"message": "Publié $timeago$",
+		"description": "Message showing page age",
+		"placeholders": {
+			"timeago": {
+				"content": "$1",
+				"example": "il ya 4 ans"
+	    	}
+  		}
+  	}
+}

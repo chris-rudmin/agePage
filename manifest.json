@@ -1,9 +1,10 @@
 {
   "name": "agePage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "An extension which informs the user how old the page is.",
   "author": "Chris Rudmin",
+  "default_locale": "en",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -14,7 +15,7 @@
   ],
   "content_scripts": [{
     "matches": [ "http://*/*", "https://*/*" ],
-    "js": [ "src/jquery-2.0.3.min.js", "src/agePage.js" ],
+    "js": [ "src/jquery-2.0.3.min.js", "src/moment-with-langs.min.js", "src/agePage.js" ],
     "css": [ "src/agePage.css" ]
   }]
 }

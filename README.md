@@ -26,6 +26,8 @@ Included Libraries
 
 jQuery 2.0.3: jquery.com
 
+Moment.js 2.5.0: momentjs.com
+
 Known Issues
 -------------------------------
 
