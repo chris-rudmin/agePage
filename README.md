@@ -13,7 +13,7 @@ We query google and scrape the reported page age. If this fails, we resort to th
 In reality the age reported from the server is rarely accurate and google has a better estimate of page age.
 More robust solution might be to find other internet services.
 
-Note: This method will likely fail if google adjusts is request responses. We should really be using Google Custom Search API https://developers.google.com/custom-search/ but it costs money.
+Note: This method will likely fail if google adjusts is request responses, and is not a good solution to this problem.
 
 Contributers
 -------------------------------
