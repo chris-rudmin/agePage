@@ -3,7 +3,9 @@ agePage
 
 This is a proof of concept Google Chrome Extension which informs the user how old the page is they are looking at.
 
-Page age will appear in the bottom right after page is 180 days old
+Page age will appear in the bottom right after page is 180 days old.
+
+Written with [jQuery](http://jquery.com/) and [Moment.js](http://momentjs.com/).
 
 How does it work?
 -------------------------
@@ -21,20 +23,16 @@ Concept: John F. Walsh
 
 Code: Chris Rudmin
 
-Included Libraries
--------------------------------
-
-jQuery 2.0.3: jquery.com
-
-Moment.js 2.5.0: momentjs.com
 
 Known Issues
 -------------------------------
 
-Scraping the dates from google only work if results are in English
+Scraping the dates from google only work if results are in English.
+
+Some domain roots do not search properly.
 
 
 Compiling
 ------------------------
 
-In the Chrome Extensions window, Enable Developer Mode by clicking in the top right. Then click Load Unpacked Extension and select this folder. You can also compile the extension from here. 
+In the Chrome Extensions window, Enable Developer Mode by clicking in the top right. Then click Load Unpacked Extension and select this folder. You can also compile the extension from this window. 
