@@ -23,10 +23,9 @@
 
         var pageDate,
             urlToSearch = document.URL,
-            titleToSearch = document.title,
-            pageResults = $(data).find("#rso > li");
+            titleToSearch = document.title;
 
-        pageResults.each( function() {
+        $(data).find("#rso > li").each( function() {
 
             // Long titles and urls have added ellipses. Strip them for matching
             var $this = $(this),
