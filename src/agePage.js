@@ -10,8 +10,8 @@
 			.fadeIn( 1000 );
 	};
 
+    // Getting last updated date from google failed. Using lastModified date.
     var googleRequestFail = function(){
-    	console.log("Getting last updated date from google failed. Using lastModified date.");
     	var lastModifiedDate = moment( document.lastModified );
     	if ( isOldEnough( lastModifiedDate ) ) {
     		displayAge( lastModifiedDate );
@@ -37,10 +37,9 @@
 			// Only use date if url or title match to reduce false positive
 			if ( urlToSearch.indexOf( resultUrl ) != -1 || titleToSearch.indexOf( resultTitle ) != -1 ) {
 				
-				// Create a date if present in span.f
+				// I've seen dates come back in two different structures. 
+				// Try one then the other
 				pageUpdatedDate = moment( $this.find("span.f").text().split(" - ")[0] );
-
-				// Sometimes age comes back in different format
 				if ( !pageUpdatedDate.isValid() ) {
 					pageUpdatedDate = moment( $this.find("div.f.slp").text().split(" - ")[0] );
 				}
@@ -53,7 +52,7 @@
     };
 
     var isOldEnough = function( age ){
-    	return age && age.isValid() && moment().diff( age, "days" ) > 180;
+    	return ( age && age.isValid() && moment().diff( age, "days" ) > 180 );
     };
 
 	// Search for this URL in google from before 1 day ago
