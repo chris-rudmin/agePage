@@ -1,28 +1,27 @@
 (function(){
 
     var displayAge = function( age ) {
-        moment.lang( chrome.i18n.getMessage("@@ui_locale") );
-        $("<div/>")
-            .addClass( "agePageText" )
-            .text( chrome.i18n.getMessage( "published", age.fromNow() ) )
-            .hide()
-            .appendTo( "body" )
-            .fadeIn( 1000 );
+        if ( moment().diff( age, "days" ) > 180 ) {
+            moment.lang( chrome.i18n.getMessage("@@ui_locale") );
+            $("<div/>")
+                .addClass( "agePageText" )
+                .text( chrome.i18n.getMessage( "published", age.fromNow() ) )
+                .hide()
+                .appendTo( "body" )
+                .fadeIn( 1000 );
+        }
     };
 
     // Getting last updated date from google failed. Using lastModified date.
     var googleRequestFail = function(){
-        var lastModifiedDate = moment( document.lastModified );
-        if ( isOldEnough( lastModifiedDate ) ) {
-            displayAge( lastModifiedDate );
-        }
+        displayAge( moment( document.lastModified ) );
     };
 
     // Pages that are always up to date will not show in google search results
     // NOTE! This is totally bad form, and can break if google changes it's request responses !
     var googleRequestSuccess = function( data ) {
 
-        var pageUpdatedDate,
+        var pageDate,
             urlToSearch = document.URL,
             titleToSearch = document.title,
             pageResults = $(data).find("#rso > li");
@@ -38,21 +37,16 @@
             if ( urlToSearch.indexOf( resultUrl ) != -1 || titleToSearch.indexOf( resultTitle ) != -1 ) {
                 
                 // I've seen dates come back in two different structures. 
-                // Try one then the other
-                pageUpdatedDate = moment( $this.find("span.f").text().split(" - ")[0] );
-                if ( !pageUpdatedDate.isValid() ) {
-                    pageUpdatedDate = moment( $this.find("div.f.slp").text().split(" - ")[0] );
+                pageDate = moment( $this.find("span.f").text().split(" - ")[0] );
+                if ( !pageDate.isValid() ) {
+                    pageDate = moment( $this.find("div.f.slp").text().split(" - ")[0] );
                 }
 
                 return false;
             }
         });
 
-        ( isOldEnough( pageUpdatedDate ) ? displayAge( pageUpdatedDate ) : googleRequestFail() );
-    };
-
-    var isOldEnough = function( age ){
-        return ( age && age.isValid() && moment().diff( age, "days" ) > 180 );
+        ( pageDate && pageDate.isValid() ? displayAge( pageDate ) : googleRequestFail() );
     };
 
     // Search for this URL in google from before 1 day ago
