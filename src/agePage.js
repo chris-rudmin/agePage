@@ -1,4 +1,4 @@
-var agePage = function(){
+(function(){
 
 	var displayAge = function( pageUpdatedDate ) {
 		if ( moment().diff( pageUpdatedDate, "days" ) > 180 ) {
@@ -31,6 +31,7 @@ var agePage = function(){
 
 		pageResults.each( function() {
 
+			// Long titles and urls have added ellippses. Strip them for matching
 			var $this = $(this),
 				resultUrl = $this.find("cite").text().replace("...", ""),
 				resultTitle = $this.find("h3 a").text().replace(" ...", "");
@@ -72,4 +73,4 @@ var agePage = function(){
 	request.done( googleRequestSuccess );
 	request.fail( googleRequestFail );
 
-}();
+}());
