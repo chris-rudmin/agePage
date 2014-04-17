@@ -12,12 +12,12 @@
         }
     };
 
-    // Getting last updated date from google failed. Using lastModified date.
+    // Getting page age from google failed. Using lastModified date.
     var googleRequestFail = function(){
         displayAge( moment( document.lastModified ) );
     };
 
-    // Pages that are always up to date will not show in google search results
+    // Pages that are always up to date will not show in google search results. In this case, lastModified is fine to use
     // NOTE! This is totally bad form, and can break if google changes it's request responses !
     var googleRequestSuccess = function( data ) {
 
